@@ -56,12 +56,12 @@
   <script src="../assets/js/stisla.js"></script>
 
   <!-- JS Libraies -->
-
+  @stack('page-scripts')
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
 
   <!-- Page Specific JS File -->
-  @stack('page-scripts')
+  @stack('after-scripts')
 </body>
 </html>

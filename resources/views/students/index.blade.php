@@ -38,7 +38,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Aksi</th>
+                                    <th scope="col" >Aksi</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIM</th>
                                     <th scope="col">Profile</th>
@@ -64,12 +64,12 @@
                                                 
                                             </a> --}}
                                             <form action="{{ route('edit.mhs',$student->id) }}" class="float-start" style="margin:2px"  method="get">
-                                              <button type="button" type="submit"  class="btn btn-primary ">Edit</button>
+                                              <button  type="submit"  class="btn btn-primary ">Edit</button>
                                             </form>
-                                            <form action="{{ route('destroy.mhs',$student->id) }}" class="float-start" style="margin:2px" method="post">
+                                            <form action="{{ route('destroy.mhs',$student->id) }}" class="float-start swal-confirm" style="margin:2px" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit" class="btn btn-danger ">Delete</button>
+                                                <button type="submit" class="btn btn-danger swal-confirm ">Delete</button>
                                             </form>
 
                                         </td>
@@ -96,5 +96,29 @@
 @endsection
 
 @push('page-scripts')
-    <script src=" {{ asset('../node_modules/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script src=" {{ asset('assets/js/page/modules-sweetalert.js') }}"></script>
+@endpush
+
+@push('after-scripts')
+<script>
+$(".swal-confirm").click(function() {
+    swal({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this imaginary file!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+        swal('Poof! Your imaginary file has been deleted!', {
+          icon: 'success',
+        });
+        } else {
+        swal('Your imaginary file is safe!');
+        }
+      });
+  });
+</script>
+    
 @endpush

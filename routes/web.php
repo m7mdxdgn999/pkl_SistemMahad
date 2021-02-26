@@ -13,14 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
 
-//crud
-Route::get('crud', 'StudentsController@Index')->name('index');
-Route::get('crud/create', 'StudentsController@Create')->name('c.mhs') ; 
-Route::post('crud/store', 'StudentsController@Store')->name('store.mhs') ; 
-Route::delete('crud/delete/{student}', 'StudentsController@Destroy')->name('destroy.mhs') ; 
-Route::get('crud/edit/{student}', 'StudentsController@Edit')->name('edit.mhs') ; 
-Route::put('crud/{student}', 'StudentsController@Update')->name('u.mhs') ; 
+//login
+Route::get('/', 'authentication\AuthenticationController@Index')->name('p.login');
+Route::post('/login', 'authentication\AuthenticationController@Login')->name('login');
+
+
+Route::group(['middleware' => 'CekLoginMiddleware'], function () {
+    //crud mhs
+    Route::get('crud', 'StudentsController@Index')->name('index');
+    Route::get('crud/create', 'StudentsController@Create')->name('c.mhs');
+    Route::post('crud/store', 'StudentsController@Store')->name('store.mhs');
+    Route::delete('crud/delete/{student}', 'StudentsController@Destroy')->name('destroy.mhs');
+    Route::get('crud/edit/{student}', 'StudentsController@Edit')->name('edit.mhs');
+    Route::put('crud/{student}', 'StudentsController@Update')->name('u.mhs');
+    Route::get('/logout', 'authentication\AuthenticationController@Logout')->name('logout');
+});
