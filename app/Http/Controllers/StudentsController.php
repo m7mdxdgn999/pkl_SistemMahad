@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Student;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class StudentsController extends Controller
      */
     public function Index()
     {
-        return view('students.index');
+        $students= Student::paginate(3);
+
+        // $students=DB::table('students')->get();
+
+        return view ('students.index', ['students'=>$students]);
     }
 
     /**
@@ -33,9 +38,35 @@ class StudentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function Store(Request $request)
+    {       
+        //cek apakah sudah tertangkap via id
+        // dd($request->all());
+        
+         //validasi
+         $request->validate([
+            'nama_mahasiswa' => 'required',
+            'nim' => 'required | size:14',
+            'fakultas_jurusan_semester' => 'required ',
+            'tempat_tanggal_lahir' => 'required ',
+            'no_hp_mahasantri' => 'required ',
+            'jalur_masuk' => 'required ',
+            'nama_org_tua' => 'required ',
+            'no_hp_org_tua' => 'required ',
+            'alamat_lengkap' => 'required ',
+            'nama_mabna' => 'required '
+         ],
+         [
+            'nama_mahasiswa.requied'=>'Harus diisi'
+         ]
+    );
+        
+        //insert data ke table, laravel sudah tau table yg mana krna bhs inggris "student"
+        Student::create($request->all());
+
+        //alihkan halaman ke halaman admin klo sudah tersimpan
+        return redirect()->route('index')->with('message', 'Data berhasil ditambah!');
+
     }
 
     /**
@@ -55,9 +86,11 @@ class StudentsController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function Edit(Student $student)
     {
         //
+       
+        return view('students.edit',compact('student'));
     }
 
     /**
@@ -67,9 +100,14 @@ class StudentsController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function Update(Request $request, Student $student)
     {
-        //
+        //cek apakah sudah tertangkap via id
+        // dd($request->all());
+
+        // eksekusi update
+        $student->update($request->all());
+        return redirect()->route('index')->with('message', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -78,8 +116,10 @@ class StudentsController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function Destroy(Student $student)
     {
         //
+        $student->delete();
+        return redirect()->back()->with('message','Data berhasil dihapus');
     }
 }

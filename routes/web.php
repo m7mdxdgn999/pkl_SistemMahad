@@ -20,3 +20,7 @@ Route::get('/', function () {
 //crud
 Route::get('crud', 'StudentsController@Index')->name('index');
 Route::get('crud/create', 'StudentsController@Create')->name('c.mhs') ; 
+Route::post('crud/store', 'StudentsController@Store')->name('store.mhs') ; 
+Route::delete('crud/delete/{student}', 'StudentsController@Destroy')->name('destroy.mhs') ; 
+Route::get('crud/edit/{student}', 'StudentsController@Edit')->name('edit.mhs') ; 
+Route::put('crud/{student}', 'StudentsController@Update')->name('u.mhs') ; 

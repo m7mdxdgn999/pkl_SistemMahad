@@ -29,47 +29,54 @@
                                 <b>Note!</b> Not all browsers support HTML5 type input.
                             </div>
 
-                            <form action="{{ route('store.mhs') }}" method="post">
+                            <form action="{{ route('u.mhs',$student->id) }}" method="post">
                                 @csrf
+                                @method('put')
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="nama_mahasiswa">Nama Lengkap</label>
                                             <input type="text" class="form-control @error('nama_mahasiswa') is-invalid                                                    
-                                                @enderror" id="nama_mahasiswa" placeholder="Nama Lengkap"
-                                                name="nama_mahasiswa">
+                                                        @enderror" id="nama_mahasiswa" placeholder="Nama Lengkap"
+                                                name="nama_mahasiswa" @if (old('nama_mahasiswa')) value="{{ old('nama_mahasiswa') }}" @else value="{{ $student->nama_mahasiswa }}" @endif>
                                             @error('nama_mahasiswa')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label for="fakultas_jurusan_semester"> Fakultas/ Jurusan</label>
-                                            <input type="text" class="form-control @error('fakultas_jurusan_semester') is-invalid @enderror " id="fakultas_jurusan_semester"
-                                                placeholder="Fakultas/Jurusan" name="fakultas_jurusan_semester">
+                                            <input type="text"
+                                                class="form-control @error('fakultas_jurusan_semester') is-invalid @enderror "
+                                                id="fakultas_jurusan_semester" placeholder="Fakultas/Jurusan"
+                                                name="fakultas_jurusan_semester" @if (old('fakultas_jurusan_semester')) value="{{ old('fakultas_jurusan_semester') }}" @else value="{{ $student->fakultas_jurusan_semester }}" @endif>
                                             @error('fakultas_jurusan_semester')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label for="tempat_tanggal_lahir">Tempat dan tanggal lahir</label>
-                                            <input type="text" class="form-control @error('tempat_tanggal_lahir') is-invalid @enderror " id="tempat_tanggal_lahir"
-                                                placeholder="Tempat dan Tanggal Lahir" name="tempat_tanggal_lahir">
+                                            <input type="text"
+                                                class="form-control @error('tempat_tanggal_lahir') is-invalid @enderror "
+                                                id="tempat_tanggal_lahir" placeholder="Tempat dan Tanggal Lahir"
+                                                name="tempat_tanggal_lahir" @if (old('tempat_tanggal_lahir')) value="{{ old('tempat_tanggal_lahir') }}" @else value="{{ $student->tempat_tanggal_lahir }}" @endif>
                                             @error('tempat_tanggal_lahir')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class=" mb-3">
                                             <label for="nama_org_tua">Nama Orang Tua</label>
-                                            <input type="text" class="form-control @error('nama_org_tua') is-invalid @enderror" id="nama_org_tua"
-                                                placeholder="Nama Orang Tua" name="nama_org_tua">
+                                            <input type="text"
+                                                class="form-control @error('nama_org_tua') is-invalid @enderror"
+                                                id="nama_org_tua" placeholder="Nama Orang Tua" name="nama_org_tua" @if (old('nama_org_tuar')) value="{{ old('nama_org_tua') }}" @else value="{{ $student->nama_org_tua }}" @endif>
                                             @error('nama_org_tua')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label for="alamat_lengkap">Alamat</label>
-                                            <input type="text" class="form-control @error('alamat_lengkap') is-invalid @enderror" id="alamat_lengkap" placeholder="Alamat"
-                                                name="alamat_lengkap">
+                                            <input type="text"
+                                                class="form-control @error('alamat_lengkap') is-invalid @enderror"
+                                                id="alamat_lengkap" placeholder="Alamat" name="alamat_lengkap" @if (old('alamat_lengkap')) value="{{ old('alamat_lengkap') }}" @else value="{{ $student->alamat_lengkap }}" @endif>
                                             @error('alamat_lengkap')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -79,15 +86,17 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="nim">NIM</label>
-                                            <input type="text" class="form-control @error('nim') is-invalid @enderror " id="nim" placeholder="NIM" name="nim">
+                                            <input type="text" class="form-control @error('nim') is-invalid @enderror "
+                                                id="nim" placeholder="NIM" name="nim" @if (old('nim')) value="{{ old('nim') }}" @else value="{{ $student->nim }}" @endif>
                                             @error('nim')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label for="no_hp_mahasantri">No hp</label>
-                                            <input type="text" class="form-control @error('no_hp_mahasantri') is-invalid @enderror " id="no_hp_mahasantri"
-                                                placeholder="No hp" name="no_hp_mahasantri">
+                                            <input type="text"
+                                                class="form-control @error('no_hp_mahasantri') is-invalid @enderror "
+                                                id="no_hp_mahasantri" placeholder="No hp" name="no_hp_mahasantri" @if (old('no_hp_mahasantri')) value="{{ old('no_hp_mahasantri') }}" @else value="{{ $student->no_hp_mahasantri }}" @endif>
                                             @error('no_hp_mahasantri')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -104,8 +113,9 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="no_hp_org_tua">No Hp Orang Tua / Wali</label>
-                                            <input type="text" class="form-control @error('no_hp_org_tua') is-invalid @enderror " placeholder="No HP Orang Tua/Wali"
-                                                name="no_hp_org_tua">
+                                            <input type="text"
+                                                class="form-control @error('no_hp_org_tua') is-invalid @enderror "
+                                                placeholder="No HP Orang Tua/Wali" name="no_hp_org_tua" @if (old('no_hp_org_tua')) value="{{ old('no_hp_org_tua') }}" @else value="{{ $student->no_hp_org_tua }}" @endif>
                                         </div>
                                         <div class="mb-3">
                                             <label for="nama_mabna">Mabna:</label>
