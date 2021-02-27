@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 
 //login
-Route::get('/', 'authentication\AuthenticationController@Index')->name('p.login');
 Route::post('/login', 'authentication\AuthenticationController@Login')->name('login');
+Route::get('/', 'authentication\AuthenticationController@Index')->name('p.login');
 
 
-Route::group(['middleware' => 'CekLoginMiddleware'], function () {
+Route::group(['middleware' => 'auth'], function () {
     //crud mhs
     Route::get('crud', 'StudentsController@Index')->name('index');
     Route::get('crud/create', 'StudentsController@Create')->name('c.mhs');
