@@ -31,7 +31,7 @@ class AuthenticationController extends Controller
         // cara yg disedian laravel
          if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             # code...
-             return redirect()->route('index'); 
+             return redirect()->route('student.index'); 
          }
         
         return redirect()->route('p.login')->with('message','Email atau Password salah');

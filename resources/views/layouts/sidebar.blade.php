@@ -16,7 +16,7 @@
             </ul>
           </li>
           <li class="menu-header">Starter</li>
-          <li class="active"><a class="nav-link" href="{{ route('index') }}"><i class="fas fa-user-cog"></i> <span>Admin Panel</span></a></li>
+          <li class="active"><a class="nav-link" href="{{ route('student.index') }}"><i class="fas fa-user-cog"></i> <span>Admin Panel</span></a></li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
             <ul class="dropdown-menu">

@@ -19,13 +19,14 @@ Route::post('/login', 'authentication\AuthenticationController@Login')->name('lo
 Route::get('/', 'authentication\AuthenticationController@Index')->name('p.login');
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['prefix' => 'student','middleware' => 'auth'], function () {
     //crud mhs
-    Route::get('crud', 'StudentsController@Index')->name('index');
-    Route::get('crud/create', 'StudentsController@Create')->name('c.mhs');
-    Route::post('crud/store', 'StudentsController@Store')->name('store.mhs');
-    Route::delete('crud/delete/{student}', 'StudentsController@Destroy')->name('destroy.mhs');
-    Route::get('crud/edit/{student}', 'StudentsController@Edit')->name('edit.mhs');
-    Route::put('crud/{student}', 'StudentsController@Update')->name('u.mhs');
+    Route::get('/', 'StudentsController@Index')->name('student.index');
+    Route::get('create', 'StudentsController@Create')->name('student.create');
+    Route::post('store', 'StudentsController@Store')->name('student.store');
+    Route::get('show/{student}', 'StudentsController@Show')->name('student.show');
+    Route::get('edit/{student}', 'StudentsController@Edit')->name('student.edit');
+    Route::patch('update/{student}', 'StudentsController@Update')->name('student.update');
+    Route::delete('delete/{student}', 'StudentsController@Destroy')->name('student.destroy');
     Route::get('/logout', 'authentication\AuthenticationController@Logout')->name('logout');
 });

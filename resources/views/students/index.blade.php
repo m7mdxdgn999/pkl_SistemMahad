@@ -15,7 +15,7 @@
 
         <div class="section-body">
 
-            <a href="{{ route('c.mhs') }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i> Tambah
+            <a href="{{ route('student.create') }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i> Tambah
                 Data</a>
 
             <div class="row">
@@ -49,24 +49,11 @@
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>
-                                            {{-- <a>
-                                                <form action="" class="btn btn-primary" style="margin:2px">
-                                                    Edit
-                                                </form> 
-                                            </a>
-                                            <a class="btn btn-danger" type="submit">
-                                                <form action="{{ route('destroy.mhs', $student->id) }}"
-                                                      method="post" style="margin:2px">
-                                                    @csrf
-                                                    @method('delete')                                                                                                        
-                                                </form>
-                                                Delete
-                                                
-                                            </a> --}}
-                                            <form action="{{ route('edit.mhs',$student->id) }}" class="float-start" style="margin:2px"  method="get">
+                                           
+                                            <form action="{{ route('student.edit',$student->id) }}" class="float-start" style="margin:2px"  method="get">
                                               <button  type="submit"  class="btn btn-primary ">Edit</button>
                                             </form>
-                                            <form action="{{ route('destroy.mhs',$student->id) }}" class="float-start swal-confirm" style="margin:2px" method="post">
+                                            <form action="{{ route('student.destroy',$student->id) }}" class="float-start swal-confirm" style="margin:2px" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger swal-confirm ">Delete</button>

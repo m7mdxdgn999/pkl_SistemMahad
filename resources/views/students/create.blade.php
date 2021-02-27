@@ -29,7 +29,7 @@
                                 <b>Note!</b> Not all browsers support HTML5 type input.
                             </div>
 
-                            <form action="{{ route('store.mhs') }}" method="post">
+                            <form action="{{ route('student.store') }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -93,9 +93,9 @@
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label for="jalur_masuk" name="jalur_masuk" id="jalur_masuk">Jalur
+                                            <label for="jalur_masuk">Jalur
                                                 Masuk:</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="jalur_masuk" id="jalur_masuk">
                                                 <option value="SNMPTN">SNMPTN</option>
                                                 <option value="SPAN PTKIN">SPAN PTKIN </option>
                                                 <option value="SBMPTN">SBMPTN</option>

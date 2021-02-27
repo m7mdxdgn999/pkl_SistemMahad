@@ -29,9 +29,9 @@
                                 <b>Note!</b> Not all browsers support HTML5 type input.
                             </div>
 
-                            <form action="{{ route('u.mhs',$student->id) }}" method="post">
+                            <form action="{{ route('student.edit',$student->id) }}" method="post">
                                 @csrf
-                                @method('put')
+                                @method('patch')
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">

@@ -47,7 +47,7 @@ class StudentsController extends Controller
          //validasi
          $request->validate([
             'nama_mahasiswa' => 'required',
-            'nim' => 'required | size:14',
+            'nim' => 'required|unique:students|max:14',
             'fakultas_jurusan_semester' => 'required ',
             'tempat_tanggal_lahir' => 'required ',
             'no_hp_mahasantri' => 'required ',
@@ -61,12 +61,12 @@ class StudentsController extends Controller
             'nama_mahasiswa.requied'=>'Harus diisi'
          ]
     );
-        
+        // return $request->all();
         //insert data ke table, laravel sudah tau table yg mana krna bhs inggris "student"
         Student::create($request->all());
 
         //alihkan halaman ke halaman admin klo sudah tersimpan
-        return redirect()->route('index')->with('message', 'Data berhasil ditambah!');
+        return redirect()->route('student.index')->with('message', 'Data berhasil ditambah!');
 
     }
 
@@ -108,7 +108,7 @@ class StudentsController extends Controller
 
         // eksekusi update
         $student->update($request->all());
-        return redirect()->route('index')->with('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('student.index')->with('message', 'Data Berhasil Diupdate!');
     }
 
     /**
