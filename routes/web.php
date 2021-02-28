@@ -26,7 +26,7 @@ Route::group(['prefix' => 'student','middleware' => 'auth'], function () {
     Route::post('store', 'StudentsController@Store')->name('student.store');
     Route::get('show/{student}', 'StudentsController@Show')->name('student.show');
     Route::get('edit/{student}', 'StudentsController@Edit')->name('student.edit');
-    Route::patch('update/{student}', 'StudentsController@Update')->name('student.update');
+    Route::put('update/{student}', 'StudentsController@Update')->name('student.update');
     Route::delete('delete/{student}', 'StudentsController@Destroy')->name('student.destroy');
     Route::get('/logout', 'authentication\AuthenticationController@Logout')->name('logout');
 });
