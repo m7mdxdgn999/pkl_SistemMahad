@@ -30,17 +30,37 @@ class AuthenticationController extends Controller
 
         // cara yg disedian laravel
          if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            # code...
-             return redirect()->route('student.index'); 
+
+            if (auth()->user()->level == 'admin') {
+                return redirect()->route('admin.student.index'); 
+            }
+           elseif (auth()->user()->level == 'mahasiswa') {
+            return redirect()->route('student.index'); 
+           }
+           else {
+               return "nothing";
+           }
+             
          }
         
-        return redirect()->route('p.login')->with('message','Email atau Password salah');
+        return redirect()->route('loginForm')->with('message','Email atau Password salah');
     }
 
     public function Logout(Request $request)
     {
         Auth::logout();
-        // $request->session()->flush();
-        return redirect()->route('p.login');
+        $request->session()->flush();
+        return redirect()->route('loginForm');
+    }
+
+    public function Registration(Request $request)
+    {
+
+    }
+
+    public function Page404()
+    {
+        
+        return view('404.404');
     }
 }

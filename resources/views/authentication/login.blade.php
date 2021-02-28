@@ -27,11 +27,11 @@
             <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Stisla</span></h4>
             <p class="text-muted">Before you get started, you must login or register if you don't already have an account.</p>
 
-            <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+            <form method="POST" action="{{ route('loginAction') }}" class="needs-validation" novalidate="">
               @csrf
               <div class="form-group">
                 <label for="usernam">Email</label>
-                <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                <input id="email" type="text" class="form-control" name="email" tabindex="1" required autofocus>
                 <div class="invalid-feedback">
                   Please fill in your email
                 </div>

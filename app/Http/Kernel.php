@@ -64,5 +64,12 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'CekLoginMiddleware' => \App\Http\Middleware\CekLoginMiddleware::class,
-    ];
+
+
+        // new middleware of the app
+        'admin'=> \App\Http\Middleware\AdminMiddleware::class,
+        'student'=> \App\Http\Middleware\StudentMiddleware::class,
+        'testLevel'=> \App\Http\Middleware\test::class,
+
+    ];  
 }

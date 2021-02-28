@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use App\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-class StudentsController extends Controller
+
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -80,7 +80,7 @@ class StudentsController extends Controller
         $user_student=Student::create($request->all());
 
         //alihkan halaman ke halaman admin klo sudah tersimpan
-        return redirect()->route('student.index')->with('message', 'Data berhasil ditambah!');
+        return redirect()->route('admin.student.index')->with('message', 'Data berhasil ditambah!');
 
     }
 
@@ -122,7 +122,7 @@ class StudentsController extends Controller
 
         // eksekusi update
         $student->update($request->all());
-        return redirect()->route('student.index')->with('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin.student.index')->with('message', 'Data Berhasil Diupdate!');
     }
 
     /**
