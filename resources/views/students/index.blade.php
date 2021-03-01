@@ -62,7 +62,13 @@
                                         </td>
                                         <td>{{ $student->nama_mahasiswa }}</td>
                                         <td>{{ $student->nim }}</td>
-                                        <td><button type="button" class="btn btn-warning">Details</button></td>
+                                        <td>
+                                            <form action="{{ route('student.show',$student->id) }}" class="float-start swal-confirm" style="margin:2px" method="get">
+                                                @csrf                                                
+                                                <button type="submit" class="btn btn-warning">Details</button></td>
+                                            </form>
+
+                                            
                                     </tr>
                                 @endforeach
                             </tbody>

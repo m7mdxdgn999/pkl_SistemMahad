@@ -36,6 +36,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::get('edit/{student}', 'Admin\StudentController@Edit')->name('student.edit');
         Route::put('update/{student}', 'Admin\StudentController@Update')->name('student.update');
         Route::delete('delete/{student}', 'Admin\StudentController@Destroy')->name('student.destroy');
+        // Route::get('pdf/{student}', 'Admin\PrintStudentController@Pdf')->name('student.pdf');
+        // Route::get('perint/{student}', 'Admin\PrintStudentController@Print')->name('student.print');
         
     });
 
