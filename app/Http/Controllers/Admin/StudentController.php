@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Student;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
 
 class StudentController extends Controller
 {
@@ -90,12 +92,23 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function Show(Student $student)
     {
+        
          return view('students.show',compact('student'));
         //  return $student->all();
     }
 
+    public function Print(Student $student)
+
+    {
+        $pdf = true;
+        // return view('students.show',compact('student'));
+        $pdf= PDF::loadview('students.pdf.print',compact('student', 'pdf'))->setPaper('A4','potrait');
+         $pdf->stream();
+
+         return $pdf->download('Student.pdf'); 
+    }
     /**
      * Show the form for editing the specified resource.
      *

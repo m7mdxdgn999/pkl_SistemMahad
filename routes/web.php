@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::get('create', 'Admin\StudentController@Create')->name('student.create');
         Route::post('store', 'Admin\StudentController@Store')->name('student.store');
         Route::get('show/{student}', 'Admin\StudentController@Show')->name('student.show');
+        Route::get('print/{student}', 'Admin\StudentController@Print')->name('student.print');
         Route::get('edit/{student}', 'Admin\StudentController@Edit')->name('student.edit');
         Route::put('update/{student}', 'Admin\StudentController@Update')->name('student.update');
         Route::delete('delete/{student}', 'Admin\StudentController@Destroy')->name('student.destroy');

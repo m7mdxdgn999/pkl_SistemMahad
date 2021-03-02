@@ -15,21 +15,41 @@
 
         <div class="section-body">
 
-            <a href="{{ route('student.create') }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i> Tambah
-                Data</a>
+
+
+            <a href="{{ route('student.create') }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>
+                Tambah
+                Data
+            </a>
+
+                <div class="search_wrap search_wrap_1">
+                    <div class="search_box">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
+                        <button class="btn btn_common " type="submit"><i class="fas fa-search"></i></button>
+                        <div class="search-backdrop"></div>
+                    </div>
+                </div>           
+
+
+
+
+
+
+
+
 
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12">
 
-                    @if(session('message'))
-                    <div class="alert alert-success alert-dismissible show fade">
-                        <div class="alert-body">
-                          <button class="close" data-dismiss="alert">
-                            <span>×</span>
-                          </button>
-                          {{ session('message') }}
+                    @if (session('message'))
+                        <div class="alert alert-success alert-dismissible show fade">
+                            <div class="alert-body">
+                                <button class="close" data-dismiss="alert">
+                                    <span>×</span>
+                                </button>
+                                {{ session('message') }}
+                            </div>
                         </div>
-                      </div>
                     @endif
 
                     {{-- table start --}}
@@ -38,7 +58,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col" >Aksi</th>
+                                    <th scope="col">Aksi</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIM</th>
                                     <th scope="col">Profile</th>
@@ -49,11 +69,13 @@
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>
-                                           
-                                            <form action="{{ route('student.edit',$student->id) }}" class="float-start" style="margin:2px"  method="get">
-                                              <button  type="submit"  class="btn btn-primary ">Edit</button>
+
+                                            <form action="{{ route('student.edit', $student->id) }}" class="float-start"
+                                                style="margin:2px" method="get">
+                                                <button type="submit" class="btn btn-primary ">Edit</button>
                                             </form>
-                                            <form action="{{ route('student.destroy',$student->id) }}" class="float-start swal-confirm" style="margin:2px" method="post">
+                                            <form action="{{ route('student.destroy', $student->id) }}"
+                                                class="float-start swal-confirm" style="margin:2px" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger swal-confirm ">Delete</button>
@@ -63,12 +85,15 @@
                                         <td>{{ $student->nama_mahasiswa }}</td>
                                         <td>{{ $student->nim }}</td>
                                         <td>
-                                            <form action="{{ route('student.show',$student->id) }}" class="float-start swal-confirm" style="margin:2px" method="get">
-                                                @csrf                                                
-                                                <button type="submit" class="btn btn-warning">Details</button></td>
-                                            </form>
+                                            <form action="{{ route('student.show', $student->id) }}"
+                                                class="float-start swal-confirm" style="margin:2px" method="get">
+                                                @csrf
+                                                <button type="submit" class="btn btn-warning">Details</button>
+                                                <a href="{{ route('student.print', $student->id) }}" class="btn btn-info"> <i class="fa fa-file-0-pdf"> PDF</i> </a>
+                                        </td>
+                                        </form>
 
-                                            
+
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -93,25 +118,26 @@
 @endpush
 
 @push('after-scripts')
-<script>
-$(".swal-confirm").click(function() {
-    swal({
-        title: 'Are you sure?',
-        text: 'Once deleted, you will not be able to recover this imaginary file!',
-        icon: 'warning',
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-        swal('Poof! Your imaginary file has been deleted!', {
-          icon: 'success',
+    <script>
+        $(".swal-confirm").click(function() {
+            swal({
+                    title: 'Are you sure?',
+                    text: 'Once deleted, you will not be able to recover this imaginary file!',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal('Poof! Your imaginary file has been deleted!', {
+                            icon: 'success',
+                        });
+                    } else {
+                        swal('Your imaginary file is safe!');
+                    }
+                });
         });
-        } else {
-        swal('Your imaginary file is safe!');
-        }
-      });
-  });
-</script>
-    
+
+    </script>
+
 @endpush

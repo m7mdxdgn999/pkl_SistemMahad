@@ -1,22 +1,20 @@
-@extends('layouts.master')
-@section('content')
-<br><br>
-    <table style="width: 88%; margin-left: calc(6%); margin-right: calc(6%); margin-top:50pxn !important">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <table style="width: 88%; margin-left: calc(6%); margin-right: calc(6%);">
         <tbody>
             <tr>
                 <td style="width: 10.3647%;"><span style="font-size: 12px;">Mabna:</span></td>
-                <div class="row">
-                    <div class="form-group">
-                    <div class="col-md-4">
-                        <input type="text" name="" id="" class="form-control col-md-3" value="{{ $student->nama_mahasiswa }}" >
-
-                    </div>
-                    <div class="col-md-7">
-                        <input type="text" name="" id="" class="form-control col-md-6" value="{{ $student->nama_mahasiswa }}" >
-                    </div>
-                </div>
-                </div>
-                <td style="width: 39.7313%;"><span style="font-size: 12px;"></span>
+                <td style="width: 39.7313%;"><span style="font-size: 12px;">{{ $student->nama_mahasiswa }}</span>
                 </td>
                 <td style="width: 20.2175%;"><span style="font-size: 12px;">Jalur Masuk UIN:</span></td>
                 <td style="width: 29.6865%;"><span style="font-size: 12px;">{{ $student->nama_mahasiswa }}</span>
@@ -24,8 +22,7 @@
             </tr>
         </tbody>
     </table>
-
-    <p style="text-align: center;"><img src="{{ asset('assets\img\Logo_UIN.png')  }}" width="30"> </p> 
+    <p style="text-align: center;"><img src="{{ $pdf == true ? public_path('assets\img\Logo_UIN.png') : asset('assets\img\Logo_UIN.png')  }}" width="30"> </p> 
     <p style=" text-align: center; line-height: 1.15px;"><strong>FORMULIR PENDAFTARAN MA&apos;HAD
             AL-JAMI&apos;AH</strong></p>
     <p style="text-align: center; line-height: 1.15px;"><strong>UIN SYARIF HIDAYATULLAH JAKARTA</strong></p>
@@ -63,7 +60,7 @@
                             style="font-family: 'Times New Roman', Times, serif;">Fakultas/Jurusan/Semester<br></span></span>
                 </td>
                 <td style="width: 50.0000%;"><span style="font-size: 12px;"><span
-                            style="font-family: 'Times New Roman', Times, serif;">:------------------------dsbsdn-----------------------------</span></span></td>
+                            style="font-family: 'Times New Roman', Times, serif;">:dsbsdn</span></span></td>
             </tr>
             <tr>
                 <td style="width: 50.0000%;"><span style="font-size: 12px;"><span
@@ -76,7 +73,7 @@
                 <td style="width: 50.0000%;"><span
                         style='font-size: 12px; font-family: "Times New Roman", Times, serif;'>Jenis
                         Kelamin&nbsp;</span><br></td>
-                <td style="width: 50.0000%;"><span style="font-size: 12px;">:asva</span></td>
+                <td style="width: 50.0000%;"><span style="font-size: 12px;">:------------asva------------------</span></td>
             </tr>
             <tr>
                 <td style="width: 50.0000%;"><span style="font-size: 12px;"><span
@@ -167,4 +164,6 @@
     <p><br></p>
     <p><br></p>
  
-@endsection
+</body>
+
+</html>
